@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintRight_toRightOf="parent"
+    tools:context=".MainActivity">
+
+    <io.github.richardyjtian.tipcalculator.GraphicsView
+        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+    />
+
+    <TextView
+        android:id="@+id/bill_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Total Bill ($):"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tip_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tip (%):"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/bill_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tip"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/split_bill_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Split Bill:"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/bill_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/split_bill"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/total_to_pay_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total to Pay:"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/bill_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/total_to_pay"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/total_tip_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Tip:"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/bill_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/total_tip"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/total_per_person_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Per Person:"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/bill_label"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/total_per_person"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/bill"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="numberDecimal"
+        android:onClick="updateDisplay"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/bill_label"
+        app:layout_constraintTop_toTopOf="@+id/bill_label" />
+
+    <EditText
+        android:id="@+id/tip"
+        android:layout_width="87dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="number"
+        android:onClick="updateDisplay"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="@+id/bill"
+        app:layout_constraintRight_toRightOf="@+id/bill"
+        app:layout_constraintTop_toBottomOf="@+id/bill" />
+
+    <EditText
+        android:id="@+id/split_bill"
+        android:layout_width="87dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:inputType="number"
+        android:onClick="updateDisplay"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="@+id/bill"
+        app:layout_constraintRight_toRightOf="@+id/bill"
+        app:layout_constraintTop_toBottomOf="@+id/tip" />
+
+    <Button
+        android:id="@+id/tip_plus"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:onClick="tipPlusButtonClicked"
+        android:text="+"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toRightOf="@+id/tip"
+        app:layout_constraintTop_toTopOf="@+id/tip" />
+
+    <Button
+        android:id="@+id/split_bill_plus"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:onClick="splitBillPlusButtonClicked"
+        android:text="+"
+        android:textSize="24sp"
+        app:layout_constraintLeft_toRightOf="@+id/tip"
+        app:layout_constraintTop_toTopOf="@+id/split_bill" />
+
+    <Button
+        android:id="@+id/tip_minus"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:onClick="tipMinusButtonClicked"
+        android:text="-"
+        android:textSize="24sp"
+        app:layout_constraintRight_toLeftOf="@+id/tip"
+        app:layout_constraintTop_toTopOf="@+id/tip" />
+
+    <Button
+        android:id="@+id/split_bill_minus"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:onClick="splitBillMinusButtonClicked"
+        android:text="-"
+        android:textSize="24sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/split_bill_plus"
+        app:layout_constraintRight_toLeftOf="@+id/tip" />
+
+    <TextView
+        android:id="@+id/total_to_pay"
+        android:layout_width="147dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="@+id/split_bill"
+        app:layout_constraintTop_toBottomOf="@+id/split_bill" />
+
+    <TextView
+        android:id="@+id/total_tip"
+        android:layout_width="147dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="@+id/split_bill"
+        app:layout_constraintTop_toBottomOf="@+id/total_to_pay" />
+
+    <TextView
+        android:id="@+id/total_per_person"
+        android:layout_width="147dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="@+id/split_bill"
+        app:layout_constraintTop_toBottomOf="@id/total_tip" />
+
+    <Switch
+        android:id="@+id/custom_layout_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="History"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="@+id/total_per_person"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_per_person" />
+
+</android.support.constraint.ConstraintLayout>
