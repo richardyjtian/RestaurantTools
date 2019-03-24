@@ -18,15 +18,18 @@ import java.util.ArrayList;
 public class CustomActivity extends AppCompatActivity {
 
     // instance of our new custom array adaptor
-    private MyCustomArrayAdaptor myArrayAdapter;
+    private static MyCustomArrayAdaptor myArrayAdapter;
 
     // dynamic array of Restaurants (populate at run time)
-    private ArrayList<Restaurant> myRestaurantArray = new ArrayList<Restaurant>();
+    public static ArrayList<Restaurant> myRestaurantArray = new ArrayList<Restaurant>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom);
+
+        // Read from the save file
+        myRestaurantArray = FileIO.readFromFile(this);
 
         // create the new adaptors passing important params, such
         // as context, android row style and the array of strings to display
@@ -35,13 +38,11 @@ public class CustomActivity extends AppCompatActivity {
         // get handles to the list view in the Custom Activity layout
         ListView myListView = (ListView) findViewById( R.id.listView2 );
 
-        // add some action listeners for when user clicks on row in either list view
-        myListView.setOnItemClickListener(myListViewClickedHandler);
-
         // set the adaptor view
         myListView.setAdapter(myArrayAdapter);
 
-        //TODO: load saved entries
+        // Update the list with previously saved data
+        myArrayAdapter.notifyDataSetChanged();
     }
 
     public void plusButtonClicked(View view){
@@ -80,6 +81,9 @@ public class CustomActivity extends AppCompatActivity {
                     myRestaurantArray.add(restaurant);
                     // notify the array adaptor that the array contents have changed (redraw)       
                     myArrayAdapter.notifyDataSetChanged();
+
+                    // Save to the save file
+                    FileIO.saveToFile(getApplicationContext(), myRestaurantArray);
                 }
             }
         });
@@ -91,15 +95,4 @@ public class CustomActivity extends AppCompatActivity {
         });
         builder.show();
     }
-
-    private AdapterView.OnItemClickListener myListViewClickedHandler = new AdapterView.OnItemClickListener() {
-        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-            // position = row number that user touched
-            // setValid(…) is a user written function in the custom array adaptor class
-            myArrayAdapter.changeValidity(position);
-
-            // inform array adaptor that data has changed
-            myArrayAdapter.notifyDataSetChanged();
-        }
-    };
 }

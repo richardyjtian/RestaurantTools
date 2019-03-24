@@ -3,8 +3,6 @@ package io.github.richardyjtian.tipcalculator;
 import android.content.Context;
 import android.widget.Toast;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -14,57 +12,51 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class FileIO {
-    // Overrides the file
-    public static void saveToPrivateFile(Context context, ArrayList<Restaurant> myRestaurantArray) {
-        FileOutputStream fos;
-        ObjectOutputStream os;
+    private static String FileName = "savefile";
 
-        String FileName = "savefile";
-
+    public static void saveToFile(Context context, ArrayList<Restaurant> RestaurantArray) {
         // open/create the file
         try {
-            fos = context.openFileOutput(FileName, Context.MODE_PRIVATE);
-            os = new ObjectOutputStream(fos);
+            FileOutputStream fos = context.openFileOutput(FileName, Context.MODE_PRIVATE);
+            ObjectOutputStream os = new ObjectOutputStream(fos);
 
-            // write to the file
-            os.writeObject(myRestaurantArray);
+            // write/overwrite to the file
+            os.writeObject(RestaurantArray);
 
             os.close();
             fos.close();
+
         } catch (FileNotFoundException e) {
-            Toast.makeText(context, "Error File: " + FileName, Toast.LENGTH_LONG).show();
-            return;
+//            Toast.makeText(context, "Error Save 1: " + FileName, Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             e.printStackTrace();
+            Toast.makeText(context, "Error Save 2: " + FileName, Toast.LENGTH_LONG).show();
         }
     }
 
-    public static ArrayList<Restaurant> readFromPrivateFile(Context context) {
-        FileInputStream fis;
-        ObjectInputStream is;
-        ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
-
-        String FileName = "savefile";
+    public static ArrayList<Restaurant> readFromFile(Context context) {
+        ArrayList<Restaurant> RestaurantArray = new ArrayList<Restaurant>();
 
         // open the file for reading
         try {
-            fis = context.openFileInput(FileName);
-            is = new ObjectInputStream(fis);
+            FileInputStream fis = context.openFileInput(FileName);
+            ObjectInputStream is = new ObjectInputStream(fis);
 
-            restaurants = (ArrayList<Restaurant>) is.readObject();
+            RestaurantArray = (ArrayList<Restaurant>) is.readObject();
 
             is.close();
             fis.close();
 
         } catch (FileNotFoundException e) {
-            Toast.makeText(context, "Error File: " + FileName, Toast.LENGTH_LONG).show();
-            return null;
+//            Toast.makeText(context, "Error Read 1: " + FileName, Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             e.printStackTrace();
+            Toast.makeText(context, "Error Read 2: " + FileName, Toast.LENGTH_LONG).show();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            Toast.makeText(context, "Error Read 3: " + FileName, Toast.LENGTH_LONG).show();
         }
 
-        return restaurants;
+        return RestaurantArray;
     }
 }

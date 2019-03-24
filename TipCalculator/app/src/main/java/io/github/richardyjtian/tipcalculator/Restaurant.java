@@ -1,11 +1,16 @@
 package io.github.richardyjtian.tipcalculator;
 
-public class Restaurant {
+import java.io.Serializable;
+
+public class Restaurant implements Serializable {
     private String name;
     private int rating;
     public Restaurant(String name, int rating) {
         this.name = name;
-        this.rating = rating;
+        if(rating > 5)
+            this.rating = 5;
+        else
+            this.rating = rating;
     }
 
     public String getName() {
