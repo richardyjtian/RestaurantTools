@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
                 startCustomActivity(isChecked);
             }
         });
+        // Start the restaurantlistactivity immediately
+        startCustomActivity(true);
     }
 
     public static MainActivity getInstance() {
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void startCustomActivity(boolean start) {
         if(start){
-            Intent intent = new Intent(this, CustomActivity.class);
+            Intent intent = new Intent(this, RestaurantListActivity.class);
             startActivity(intent);
         }
     }

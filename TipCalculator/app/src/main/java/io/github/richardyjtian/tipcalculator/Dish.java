@@ -1,20 +1,18 @@
 package io.github.richardyjtian.tipcalculator;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.text.DecimalFormat;
 
-public class Restaurant implements Serializable, Comparable{
+public class Dish implements Serializable, Comparable {
     private String name;
-    private String location;
-    private String type;
+    private double price;
     private int rating;
     private String note;
-    private ArrayList<Dish> dishes = new ArrayList<Dish>();
 
-    public Restaurant(String name, String location, String type, int rating, String note) {
+    public Dish(String name, double price, int rating, String note) {
         this.name = name;
-        this.location = location;
-        this.type = type;
+        DecimalFormat decimal = new DecimalFormat("0.00");
+        this.price = Double.parseDouble(decimal.format(price));
         if(rating > 5)
             this.rating = 5;
         else if(rating < 0)
@@ -24,10 +22,10 @@ public class Restaurant implements Serializable, Comparable{
         this.note = note;
     }
 
-    public void setFields(String name, String location, String type, int rating, String note) {
+    public void setFields(String name, double price, int rating, String note) {
         this.name = name;
-        this.location = location;
-        this.type = type;
+        DecimalFormat decimal = new DecimalFormat("0.00");
+        this.price = Double.parseDouble(decimal.format(price));
         if(rating > 5)
             this.rating = 5;
         else if(rating < 0)
@@ -45,16 +43,11 @@ public class Restaurant implements Serializable, Comparable{
         this.name = name;
     }
 
-    public String getLocation() { return location; }
+    public double getPrice() { return price; }
 
-    public void setLocation(String location) { this.location = location; }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+    public void setPrice(double price) {
+        DecimalFormat decimal = new DecimalFormat("0.00");
+        this.price = Double.parseDouble(decimal.format(price));
     }
 
     public int getRating() {
@@ -69,17 +62,8 @@ public class Restaurant implements Serializable, Comparable{
 
     public void setNote(String note) { this.note = note; }
 
-    public ArrayList<Dish> getDishes() {
-        return dishes;
-    }
-
-    public void setDishes(ArrayList<Dish> dishes) {
-        this.dishes = dishes;
-    }
-
     @Override
     public int compareTo(Object o) {
-        return this.getName().compareTo(((Restaurant) o).getName());
+        return this.getName().compareTo(((Dish) o).getName());
     }
 }
-

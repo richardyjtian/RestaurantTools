@@ -3,34 +3,45 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
-
-    <ImageView
-        android:id="@+id/restaurant_img"
-        android:layout_width="88dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_report_image" />
+    android:layout_height="90dp">
 
     <TextView
-        android:id="@+id/restaurant_name"
+        android:id="@+id/l_dish_note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="32dp"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/restaurant_img"
+        android:text="Note"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/l_dish_name" />
+
+    <TextView
+        android:id="@+id/l_dish_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="Price"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/l_dish_name"
+        app:layout_constraintStart_toEndOf="@+id/l_dish_name" />
+
+    <TextView
+        android:id="@+id/l_dish_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Name"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/l_rest_type"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -40,10 +51,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_name"
+        app:layout_constraintTop_toBottomOf="@+id/l_dish_name"
         app:srcCompat="@android:drawable/btn_star_big_off" />
 
     <ImageView
@@ -51,10 +61,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/star_5"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_name"
+        app:layout_constraintTop_toBottomOf="@+id/l_dish_name"
         app:srcCompat="@android:drawable/btn_star_big_off" />
 
     <ImageView
@@ -62,10 +71,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/star_4"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_name"
+        app:layout_constraintTop_toBottomOf="@+id/l_dish_name"
         app:srcCompat="@android:drawable/btn_star_big_off" />
 
     <ImageView
@@ -73,10 +81,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/star_3"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_name"
+        app:layout_constraintTop_toBottomOf="@+id/l_dish_name"
         app:srcCompat="@android:drawable/btn_star_big_off" />
 
     <ImageView
@@ -84,21 +91,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/star_2"
-        app:layout_constraintTop_toBottomOf="@+id/restaurant_name"
+        app:layout_constraintTop_toBottomOf="@+id/l_dish_name"
         app:srcCompat="@android:drawable/btn_star_big_off" />
 
-    <Button
-        android:id="@+id/delete_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/bin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="Delete"
-        app:layout_constraintBottom_toBottomOf="@+id/restaurant_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/restaurant_name" />
+        android:clickable="true"
+        android:src="@drawable/bin"
+        app:layout_constraintBottom_toTopOf="@+id/star_1"
+        app:layout_constraintEnd_toStartOf="@+id/edit" />
 
+    <ImageView
+        android:id="@+id/edit"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="3dp"
+        android:clickable="true"
+        android:src="@drawable/edit"
+        app:layout_constraintBottom_toTopOf="@+id/star_1"
+        app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>
